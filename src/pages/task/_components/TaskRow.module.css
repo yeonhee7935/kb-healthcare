@@ -1,0 +1,49 @@
+.itemRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+.itemLink {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+
+.checkboxButton {
+  flex-shrink: 0;
+  display: flex;
+  margin: -8px;
+  padding: 8px;
+}
+
+.checkbox {
+  color: var(--color-icon-disabled);
+}
+
+.checkboxDone {
+  color: var(--color-primary);
+}
+
+.cardTitle {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.cardTitleDone {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+  color: var(--color-text-disabled);
+  text-decoration: line-through;
+}
+
+.cardMemo {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-disabled);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

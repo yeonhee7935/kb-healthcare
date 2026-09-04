@@ -1,0 +1,46 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-4);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.memo {
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+  white-space: pre-wrap;
+}
+
+.date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-disabled);
+}
+
+.confirmDescription {
+  font-size: var(--font-size-sm);
+}
+
+.confirmForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
