@@ -8,13 +8,14 @@ import styles from './TaskRow.module.css';
 interface TaskRowProps {
   task: TaskItem;
   onToggleStatus: () => void;
+  isNew?: boolean;
 }
 
-export function TaskRow({ task, onToggleStatus }: TaskRowProps) {
+export function TaskRow({ task, onToggleStatus, isNew }: TaskRowProps) {
   const isDone = task.status === 'DONE';
 
   return (
-    <div className={styles.itemRow}>
+    <div className={isNew ? `${styles.itemRow} ${styles.itemRowNew}` : styles.itemRow}>
       <button
         type="button"
         className={styles.checkboxButton}

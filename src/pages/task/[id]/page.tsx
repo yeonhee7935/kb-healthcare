@@ -6,6 +6,7 @@ import { ApiError } from '@/api/client';
 import { formatDateTime } from '@/lib/formatDateTime';
 import { useDeleteTask } from '@/hooks/useDeleteTask';
 import { useTaskDetail } from '@/hooks/useTaskDetail';
+import { useToast } from '@/context/ToastContext';
 
 import { Card } from '@/components/Card';
 import { Modal } from '@/components/Modal';
@@ -25,6 +26,7 @@ export default function TaskDetailPage() {
   // 데이터 조회
   const { data, isPending, isError, error } = useTaskDetail(taskId);
   const deleteMutation = useDeleteTask();
+  const { showToast } = useToast();
 
   // 삭제 확인 모달
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -58,6 +60,7 @@ export default function TaskDetailPage() {
   const handleDelete = async () => {
     await deleteMutation.mutateAsync(taskId);
     navigate('/task', { replace: true });
+    showToast(`'${data.title}'이/가 삭제되었습니다.`);
   };
 
   return (

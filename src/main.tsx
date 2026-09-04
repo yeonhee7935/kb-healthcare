@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router';
 
 import { App } from '@/app/App';
 import { AuthProvider } from '@/context/AuthContext';
+import { ToastProvider } from '@/context/ToastContext';
 
 import './styles/global.css';
 
@@ -23,7 +24,9 @@ enableMocking().then(() => {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <AuthProvider>
-            <App />
+            <ToastProvider>
+              <App />
+            </ToastProvider>
           </AuthProvider>
         </BrowserRouter>
       </QueryClientProvider>

@@ -6,6 +6,7 @@ import type { TaskItem } from '@/types/api';
 import { useTasks } from '@/hooks/useTasks';
 import { useCreateTask } from '@/hooks/useCreateTask';
 import { useUpdateTaskStatus } from '@/hooks/useUpdateTaskStatus';
+import { useToast } from '@/context/ToastContext';
 import { Spinner } from '@/components/Spinner';
 import { EmptyState } from '@/components/EmptyState';
 
@@ -33,6 +34,7 @@ export default function TaskListPage() {
   const { data, isPending, isError, fetchNextPage, hasNextPage, isFetchingNextPage } = useTasks();
   const createTaskMutation = useCreateTask();
   const updateStatusMutation = useUpdateTaskStatus();
+  const { showToast } = useToast();
 
   // 필터 (URL 쿼리스트링 ?filter=와 동기화)
   const [searchParams, setSearchParams] = useSearchParams();
@@ -41,6 +43,8 @@ export default function TaskListPage() {
 
   // 할 일 추가 모달
   const [isAddOpen, setIsAddOpen] = useState(false);
+  // 방금 추가한 행 하이라이트
+  const [newTaskId, setNewTaskId] = useState<string | null>(null);
 
   // 가상 스크롤 + 무한 스크롤
   const tasks = data ? data.pages.flatMap((page) => page.data) : [];
@@ -65,8 +69,11 @@ export default function TaskListPage() {
   };
 
   const handleCreate = async (payload: { title: string; memo: string }) => {
-    await createTaskMutation.mutateAsync(payload);
+    const created = await createTaskMutation.mutateAsync(payload);
     setIsAddOpen(false);
+    showToast(`'${payload.title}'이/가 추가되었습니다.`);
+    setNewTaskId(created.id);
+    setTimeout(() => setNewTaskId(null), 3000);
   };
 
   if (isPending) return <Spinner />;
@@ -113,6 +120,7 @@ export default function TaskListPage() {
                   ) : (
                     <TaskRow
                       task={task}
+                      isNew={task.id === newTaskId}
                       onToggleStatus={() =>
                         updateStatusMutation.mutate({
                           id: task.id,

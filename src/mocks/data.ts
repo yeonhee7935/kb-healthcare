@@ -14,7 +14,7 @@ interface MockTask extends TaskItem {
   registerDatetime: string;
 }
 
-export const mockTasks: MockTask[] = Array.from({ length: 100 }, (_, index) => {
+export const mockTasks: MockTask[] = Array.from({ length: 5 }, (_, index) => {
   const id = String(index + 1);
   const status: TaskItem['status'] = index % 3 === 0 ? 'DONE' : 'TODO';
   return {
