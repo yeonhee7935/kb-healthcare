@@ -1,0 +1,6 @@
+.wrap {
+  min-height: calc(100dvh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
