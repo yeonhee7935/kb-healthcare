@@ -1,0 +1,22 @@
+@import 'pretendard/dist/web/variable/pretendardvariable.css';
+@import './tokens.css';
+@import './reset.css';
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  background-color: #000000;
+}
+
+#root {
+  max-width: var(--layout-max-width);
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: var(--color-surface);
+  position: relative;
+}
